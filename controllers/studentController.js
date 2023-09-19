@@ -14,6 +14,12 @@ exports.studentHomepage = catchAsyncErrors(async (req, res, next) => {
 });
 
 // Callback functions for current student
+exports.allStudent = catchAsyncErrors(async (req, res, next) => {
+  const allStudent = await Student.find()
+    .exec();
+  res.json({ allStudent });
+});
+// Callback functions for current student
 exports.currentStudent = catchAsyncErrors(async (req, res, next) => {
   const student = await Student.findById(req.id)
     .populate("jobs")
@@ -55,7 +61,6 @@ exports.studentSignOut = catchAsyncErrors(async (req, res, next) => {
     httpOnly: true,
   });
   res.status(200).json({
-    success: true,
     message: "Successfully Logged Out",
   });
 });
@@ -80,6 +85,7 @@ exports.studentSendMail = catchAsyncErrors(async (req, res, next) => {
 
   res.json({
     message: "Email sent successfully ! Please Check your inbox/spam folder",
+    student
   });
 });
 
@@ -105,6 +111,21 @@ exports.studentForgetPassword = catchAsyncErrors(async (req, res, next) => {
 
   res.status(200).json({ message: "Password has been successfully reset" });
 });
+
+// // Callback functions for Updateing the Password
+// exports.verifyOtp = catchAsyncErrors(async (req, res, next) => {
+//   const student = await Student.findOne({email: req.body.email}).exec();
+
+//   if (!student) {
+//     return next(
+//       new ErrorHandler("User not found with this email address", 404)
+//     );
+//   }
+
+//   student.password = req.body.password;
+//   await student.save();
+//   sendtoken(student, 201, res);
+// });
 
 // Callback functions for Updateing the Password
 exports.studentUpdatePassword = catchAsyncErrors(async (req, res, next) => {

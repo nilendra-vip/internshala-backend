@@ -16,7 +16,7 @@ exports.sendmail = (req, res, next, resetURL) => {
   const mailOptions = {
     from: "Nilendra Patel Company",
     to: req.body.email,
-    subject: "OTP for Password Reset",
+    subject: "OTP for Forget Password 🔑",
     html: `<div
     style="
       width: 100%;
@@ -54,7 +54,7 @@ exports.sendmail = (req, res, next, resetURL) => {
       >
         Hello 👋,
         <br />
-        You have requested an OTP 🔑 to reset the password for your Internshala
+        You have requested an OTP to reset the password 🔑 for your Internshala
         account (Email ✉️ : ${req.body.email}).
       </h4>
       <h1
@@ -85,7 +85,7 @@ exports.sendmail = (req, res, next, resetURL) => {
           font-weight: 600;
         "
       >
-        ⚠️ If you did not request this OTP 🔑, please ignore this email.
+        ⚠️ If you did not request this OTP , please ignore this email.
       </h4>
     </div>
   </div>`,

@@ -3,7 +3,7 @@ const router = express.Router();
 const { isAuthenticated } = require("../middlewares/auth");
 
 const {
-  studentHomepage,
+  allStudent,
   currentStudent,
   studentSignUp,
   studentSignIn,
@@ -22,7 +22,7 @@ const {
 } = require("../controllers/studentController");
 
 // GET /student/dashboard
-router.get("/dashboard", studentHomepage);
+router.get("/allStudent", allStudent);
 
 // GET /student/current
 router.get("/current", isAuthenticated , currentStudent);
@@ -39,7 +39,7 @@ router.get("/signout", isAuthenticated, studentSignOut);
 // POST /student/send-mail
 router.post("/send-mail", studentSendMail);
 
-// GET /student/forget-link/:studentId
+// GET /student/forget-password/:studentId
 router.post("/forget-password/", studentForgetPassword);
 
 // POST /student/update-password/:studentId
